@@ -1,8 +1,9 @@
 from .fuzzy_variable import FuzzyVariable
 from .fuzzy_set import FuzzySet
 
-class FuzzyOutputVariable(FuzzyVariable):
 
+class FuzzyOutputVariable(FuzzyVariable):
+    """Defuzzify"""
     def __init__(self, name, min_val, max_val, res):
         super().__init__(name, min_val, max_val, res)
         self._output_distribution = FuzzySet(name, min_val, max_val, res)

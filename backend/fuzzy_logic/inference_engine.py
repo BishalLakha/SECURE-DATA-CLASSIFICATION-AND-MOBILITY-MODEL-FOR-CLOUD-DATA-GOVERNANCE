@@ -1,6 +1,6 @@
 from .fuzzy_rule import FuzzyRule
-from fuzzy_system.fuzzy_variable_output import FuzzyOutputVariable
-from fuzzy_system.fuzzy_variable_input import FuzzyInputVariable
+from .fuzzy_variable_output import FuzzyOutputVariable
+from .fuzzy_variable_input import FuzzyInputVariable
 
 import matplotlib.pyplot as plt
 from matplotlib import rc
@@ -238,4 +238,4 @@ class FuzzySystem:
 
 
 if __name__ == "__main__":
-    passls
+    pass

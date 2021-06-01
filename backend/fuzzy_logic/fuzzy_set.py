@@ -11,6 +11,7 @@ class FuzzySet:
         self._domain_max = domain_max
         self._res = res
 
+        # Array representing fuzzy set
         self._domain = np.linspace(domain_min, domain_max, res)
         self._dom = np.zeros(self._domain.shape)
         self._name = name
@@ -112,7 +113,7 @@ class FuzzySet:
         return result
 
     def cog_defuzzify(self):
-
+        """Center of Gravity defuzzification"""
         num = np.sum(np.multiply(self._dom, self._domain))
         den = np.sum(self._dom)
 
@@ -133,19 +134,21 @@ class FuzzySet:
 
 
 if __name__ == "__main__":
-    s = FuzzySet.create_trapezoidal('test', 1, 100, 100, 20, 30, 50, 80)
+    # s = FuzzySet.create_trapezoidal('test', 0, 100, 100, 55,65,100,100)
 
-    print(s.empty)
-
-    u = FuzzySet('u', 1, 100, 100)
-
-    print(u.empty)
-
-    t = FuzzySet.create_trapezoidal('test', 1, 100, 100, 30, 50, 90, 100)
-
+    # print(s.empty)
+    #
+    # u = FuzzySet('u', 1, 100, 100)
+    #
+    # print(u.empty)
+    #
+    # t = FuzzySet.create_trapezoidal('test', 1, 100, 100, 30, 50, 90, 100)
+    s = FuzzySet.create_triangular('test', 0, 100, 100, 0,16.5,33)
+    #
     fig, axs = plt.subplots(1, 1)
-
-    s.union(t).complement().intersection(s).min_scalar(0.2).plot_set(axs)
+    #
+    s.plot_set(axs)
+    # s.union(t).complement().intersection(s).min_scalar(0.2).plot_set(axs)
 
     plt.show()
-    print(s.cog_defuzzify())
+    # print(s.cog_defuzzify())
