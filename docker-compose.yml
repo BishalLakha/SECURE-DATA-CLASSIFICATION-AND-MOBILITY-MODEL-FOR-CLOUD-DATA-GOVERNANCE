@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  backend:
+    build: ./backend
+    volumes:
+      - ./backend/:/app/
+    env_file:
+      - .env
+    ports:
+      - 8001:8000
+    depends_on:
+      - fuzzy_db
+
+  fuzzy_db:
+    image: postgres:12.1-alpine
+    volumes:
+      - fuzzy_db/var/lib/postgresql/data/
+    env_file:
+      - .env
+
+  fuzzy_pgadmin:
+    container_name: fuzzy_pgadmin
+    image: dpage/pgadmin4
+    env_file:
+      - .env
+    ports:
+      - "5050:80"
+    depends_on:
+      - fuzzy_db
+    volumes:
+      - pgadmin:/root/.pgadmin
+
+
+
+volumes:
+  fuzzy_db:
+  pgadmin:
+
+

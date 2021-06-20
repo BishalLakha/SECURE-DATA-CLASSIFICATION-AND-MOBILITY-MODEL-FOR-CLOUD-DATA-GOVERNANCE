@@ -1,7 +1,7 @@
-from fuzzy_logic.fuzzy_variable_output import FuzzyOutputVariable
-from fuzzy_logic.fuzzy_variable_input import FuzzyInputVariable
+from backend.app.api.fuzzy_logic import FuzzyOutputVariable
+from backend.app.api.fuzzy_logic.fuzzy_variable_input import FuzzyInputVariable
 # from fuzzy_logic.fuzzy_variable import FuzzyVariable
-from fuzzy_logic.inference_engine import FuzzySystem
+from backend.app.api.fuzzy_logic import FuzzySystem
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -59,14 +59,7 @@ system.add_rule(
 		'Availability':'Low'},
 		{'Sensitivity':'Low'})
 #
-output = system.evaluate_output({
-				'Confidentiality':100,
-				'Integrity':100,
-				'Availability':50
-		})
 
-print(output)
 # print('fuzzification\n-------------\n', info['fuzzification'])
 # print('rules\n-----\n', info['rules'])
 
-system.plot_system()

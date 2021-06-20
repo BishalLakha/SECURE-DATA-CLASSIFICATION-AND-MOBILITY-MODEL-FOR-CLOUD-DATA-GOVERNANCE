@@ -134,7 +134,7 @@ class FuzzySet:
 
 
 if __name__ == "__main__":
-    # s = FuzzySet.create_trapezoidal('test', 0, 100, 100, 55,65,100,100)
+    s = FuzzySet.create_trapezoidal('Integrity', 0, 100, 100, 25, 35, 55,65)
 
     # print(s.empty)
     #
@@ -143,7 +143,7 @@ if __name__ == "__main__":
     # print(u.empty)
     #
     # t = FuzzySet.create_trapezoidal('test', 1, 100, 100, 30, 50, 90, 100)
-    s = FuzzySet.create_triangular('test', 0, 100, 100, 0,16.5,33)
+    # s = FuzzySet.create_triangular('test', 0, 100, 100, 0,16.5,33)
     #
     fig, axs = plt.subplots(1, 1)
     #
