@@ -6,7 +6,7 @@ from app.api.classifier import fuzzy
 metadata.create_all(engine)
 
 
-app = FastAPI(openapi_url="/api/v1/fuzzy-classify/openapi.json", docs_url="/api/v1/fuzzy-classify/docs")
+app = FastAPI(openapi_url="/api/v1/fuzzy/openapi.json", docs_url="/api/v1/fuzzy/docs")
 
 origins = ['*']
 
@@ -27,4 +27,4 @@ async def shutdown():
     await database.disconnect()
 
 
-app.include_router(fuzzy, prefix='/api/v1/fuzzy-classify', tags=['fuzzy classification'])
+app.include_router(fuzzy, prefix='/api/v1/fuzzy/classify', tags=['fuzzy classification'])

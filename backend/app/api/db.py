@@ -21,4 +21,26 @@ feature_data = Table(
     Column('Sensitivity', FLOAT)
 )
 
+user_data = Table(
+    'user_data',
+    metadata,
+    Column('Id', Integer, primary_key=True),
+    Column('PA_NUMBER', String(length=500),unique=True),
+    Column('BENEFICIARY_NAME',String(length=500)),
+    Column('DISTRICT', String(length=500),nullable=True),
+    Column('GP_NP', String(length=500),nullable=True),
+    Column('WARD_NO', String(length=500),nullable=True),
+    Column('AREA_TOLE', String(length=500),nullable=True),
+    Column('HOUSE_OWNER_NAME',String(length=500),nullable=True),
+    Column('GENDER', String(length=500),nullable=True),
+    Column('Age', String(length=500),nullable=True),
+    Column('Citizenship_Number ', String(length=500),nullable=True,unique=True),
+    Column('PHONE_NO',String(length=500),nullable=True),
+    Column('LATITUDE', String(length=500),nullable=True),
+    Column('LONGITUDE', String(length=500),nullable=True),
+    Column('Nationality', String(length=500),nullable=True),
+    Column('Occupation', String(length=500),nullable=True),
+    Column('Education', String(length=500),nullable=True)
+
+)
 database = Database(DATABASE_URI)

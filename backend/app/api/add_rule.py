@@ -1,7 +1,7 @@
-from backend.app.api.fuzzy_logic import FuzzyOutputVariable
-from backend.app.api.fuzzy_logic.fuzzy_variable_input import FuzzyInputVariable
+from .fuzzy_logic.fuzzy_variable_output import FuzzyOutputVariable
+from .fuzzy_logic.fuzzy_variable_input import FuzzyInputVariable
 # from fuzzy_logic.fuzzy_variable import FuzzyVariable
-from backend.app.api.fuzzy_logic import FuzzySystem
+from .fuzzy_logic.inference_engine import FuzzySystem
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -58,6 +58,36 @@ system.add_rule(
 			'Integrity':'Low',
 		'Availability':'Low'},
 		{'Sensitivity':'Low'})
+
+system.add_rule(
+		{'Confidentiality':'High',
+			'Integrity':'High',
+		'Availability':'High'},
+		{'Sensitivity':'High'})
+
+system.add_rule(
+		{'Confidentiality':'Low',
+			'Integrity':'Medium',
+		'Availability':'Low'},
+		{'Sensitivity':'Low'})
+
+system.add_rule(
+		{'Confidentiality':'Low',
+			'Integrity':'Low',
+		'Availability':'Medium'},
+		{'Sensitivity':'Low'})
+
+system.add_rule(
+		{'Confidentiality':'Medium',
+			'Integrity':'Medium',
+		'Availability':'Medium'},
+		{'Sensitivity':'Medium'})
+
+system.add_rule(
+		{'Confidentiality':'High',
+			'Integrity':'High',
+		'Availability':'High'},
+		{'Sensitivity':'Medium'})
 #
 
 # print('fuzzification\n-------------\n', info['fuzzification'])
