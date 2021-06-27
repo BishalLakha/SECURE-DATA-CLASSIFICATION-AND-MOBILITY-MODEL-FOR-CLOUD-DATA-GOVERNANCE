@@ -3,11 +3,18 @@ from pydantic import BaseModel,Field
 
 
 class FeatureIn(BaseModel):
-    name: str
+    Name: str
     Confidentiality: float
     Integrity: float
     Availability: float
-    Sensitivity: Optional[float]
+
+
+class FeatureInDb(BaseModel):
+    Name: str
+    Confidentiality: float
+    Integrity: float
+    Availability: float
+    Sensitivity: float
 
 
 class UserDataIn(BaseModel):
@@ -33,3 +40,4 @@ class UserDataIn(BaseModel):
 
 class FeatureOut(FeatureIn):
     Id: int
+    Sensitivity:float

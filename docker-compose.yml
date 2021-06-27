@@ -12,6 +12,7 @@ services:
       - 8001:8000
     depends_on:
       - fuzzy_db
+      - redis_server
 
   fuzzy_db:
     image: postgres:12.1-alpine
@@ -40,6 +41,27 @@ services:
       - ./nginx_config.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - backend
+
+  worker:
+    build:
+      dockerfile: Dockerfile
+      context: backend/app/api/celery
+    env_file:
+      - .env
+    depends_on:
+      - redis_server
+
+  dashboard:
+    image: mher/flower
+    command: [ "flower", "--broker=redis://redis_server:6379", "--port=5555" ]
+    ports:
+      - "5555:5555"
+    depends_on:
+      - redis_server
+
+  redis_server:
+    image: redis
+
 
 volumes:
   postgress_fuzzy:
