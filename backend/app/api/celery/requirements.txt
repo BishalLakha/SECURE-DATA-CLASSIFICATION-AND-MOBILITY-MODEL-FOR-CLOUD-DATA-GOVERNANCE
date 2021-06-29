@@ -1,2 +1,6 @@
 celery==4.4.7
 redis==3.5.3
+pandas==1.2.5
+pycryptodome==3.10.1
+tinyec==0.3.1
+requests

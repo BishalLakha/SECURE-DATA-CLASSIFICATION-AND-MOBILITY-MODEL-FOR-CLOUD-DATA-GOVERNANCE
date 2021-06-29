@@ -11,3 +11,5 @@ RUN apt-get update \
 RUN pip install -r /app/requirements.txt
 
 COPY . /app/
+
+#CMD celery -A tasks worker --loglevel=info

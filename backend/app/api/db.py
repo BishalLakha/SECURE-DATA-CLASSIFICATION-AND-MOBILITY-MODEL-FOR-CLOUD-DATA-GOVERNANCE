@@ -34,7 +34,7 @@ user_data = Table(
     Column('HOUSE_OWNER_NAME',String(length=500),nullable=True),
     Column('GENDER', String(length=500),nullable=True),
     Column('Age', String(length=500),nullable=True),
-    Column('Citizenship_Number ', String(length=500),nullable=True,unique=True),
+    Column('Citizenship_Number', String(length=500),nullable=True,unique=True),
     Column('PHONE_NO',String(length=500),nullable=True),
     Column('LATITUDE', String(length=500),nullable=True),
     Column('LONGITUDE', String(length=500),nullable=True),

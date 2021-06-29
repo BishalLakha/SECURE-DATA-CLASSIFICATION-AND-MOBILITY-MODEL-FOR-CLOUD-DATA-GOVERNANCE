@@ -22,17 +22,15 @@ class UserDataIn(BaseModel):
     BENEFICIARY_NAME: str
     DISTRICT: Optional[str]
     GP_NP: Optional[str]
-    WARD_NO: Optional[int]
-
+    WARD_NO: Optional[str]
     AREA_TOLE: Optional[str]
     HOUSE_OWNER_NAME: Optional[str]
     GENDER: Optional[str]
-    Age: Optional[int]
-    Citizenship_Number: Optional[int]
-
-    PHONE_NO: Optional[int]
-    LATITUDE: Optional[float]
-    LONGITUDE: Optional[float]
+    Age: Optional[str]
+    Citizenship_Number: Optional[str]
+    PHONE_NO: Optional[str]
+    LATITUDE: Optional[str]
+    LONGITUDE: Optional[str]
     Nationality: Optional[str]
     Occupation: Optional[str]
     Education: Optional[str]
@@ -40,4 +38,8 @@ class UserDataIn(BaseModel):
 
 class FeatureOut(FeatureIn):
     Id: int
-    Sensitivity:float
+    Sensitivity: float
+
+
+class UserDataOut(UserDataIn):
+    Id: int

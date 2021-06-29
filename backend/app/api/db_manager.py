@@ -1,4 +1,4 @@
-from .db import  database, feature_data, user_data
+from .db import database, feature_data, user_data
 from .schema import FeatureInDb,UserDataIn
 
 
@@ -22,5 +22,10 @@ async def add_user_data(payload: UserDataIn):
 
 
 async def get_all_user_data():
-    query = user_data.select()
+    query = user_data.select().limit(10)
     return await database.fetch_all(query=query)
+
+
+async def delete_all_user_data():
+    query = user_data.delete()
+    return await database.execute(query=query)

@@ -83,11 +83,11 @@ system.add_rule(
 		'Availability':'Medium'},
 		{'Sensitivity':'Medium'})
 
-system.add_rule(
-		{'Confidentiality':'High',
-			'Integrity':'High',
-		'Availability':'High'},
-		{'Sensitivity':'Medium'})
+# system.add_rule(
+# 		{'Confidentiality':'High',
+# 			'Integrity':'High',
+# 		'Availability':'High'},
+# 		{'Sensitivity':'Medium'})
 #
 
 # print('fuzzification\n-------------\n', info['fuzzification'])

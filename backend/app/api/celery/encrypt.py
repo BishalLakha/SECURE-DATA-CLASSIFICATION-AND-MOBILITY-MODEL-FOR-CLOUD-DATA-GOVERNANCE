@@ -82,6 +82,6 @@ if __name__ == "__main__":
     print(a.decrypt(enc))
 
     b = ECCAESCipher(123)
-    encb = b.encrypt_ECC(b"1")
-    print(encb)
-    print(b.decrypt_ECC(encb).decode('ascii'))
+
+    print(b'app'.decode())
+
