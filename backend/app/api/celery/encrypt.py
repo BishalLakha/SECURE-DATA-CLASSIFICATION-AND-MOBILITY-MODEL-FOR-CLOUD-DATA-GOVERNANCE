@@ -59,13 +59,16 @@ class ECCAESCipher:
         sha.update(int.to_bytes(point.y, 32, 'big'))
         return sha.digest()
 
-    def encrypt_ECC(self,msg):
+    def encrypt_ECC(self,msg,celery_update,feature):
         ciphertextPrivKey = secrets.randbelow(self.curve.field.n)
         sharedECCKey = ciphertextPrivKey * self.pubKey
         secretKey = self._ecc_point_to_256_bit_key(sharedECCKey)
         ciphertext, nonce, authTag = self._encrypt_AES_GCM(msg, secretKey)
         ciphertextPubKey = ciphertextPrivKey * self.curve.g
-        return (ciphertext, nonce, authTag, ciphertextPubKey)
+        # return (ciphertext, nonce, authTag, ciphertextPubKey)
+        celery_update.update_state(state='PROGRESS', meta={'Process': "ECC Encryption", "Feature":feature})
+
+        return binascii.hexlify(ciphertext).decode()
 
     def decrypt_ECC(self,encryptedMsg):
         (ciphertext, nonce, authTag, ciphertextPubKey) = encryptedMsg

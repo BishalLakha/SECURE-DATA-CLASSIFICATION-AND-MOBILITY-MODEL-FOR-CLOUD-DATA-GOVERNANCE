@@ -7,6 +7,7 @@ from worker import celery
 import pandas as pd
 import requests
 import time
+import sys
 
 aes = AESCipher("1234")
 ecc = ECCAESCipher(1234)
@@ -41,6 +42,7 @@ def save_in_db(self, df, sensitivity,filename):
 
     try:
         df = pd.DataFrame.from_dict(df)
+        original_df_size = sys.getsizeof(df)
 
         for column in df.columns.tolist():
             sens = sensitivity.get(column, None)
@@ -56,14 +58,19 @@ def save_in_db(self, df, sensitivity,filename):
                     aes_time = time.time() - now
                 elif sens >= 66:
                     now = time.time()
-                    # df[column] = df[column].apply(lambda x: ecc.encrypt_ECC(bytes(x, 'utf-8')).decode())
-                    df[column] = df[column].apply(lambda x: aes.encrypt(x))
-                    aes_time = time.time() - now
+                    df[column] = df[column].apply(lambda x: ecc.encrypt_ECC(x.encode('utf-8').strip(),self,column))
+                    # df[column] = df[column].apply(lambda x: aes.encrypt(x))
+                    ecc_time = time.time() - now
+
+        encrypted_df_size = sys.getsizeof(df)
 
         for index, row in df.iterrows():
             r = requests.post('http://backend:8000/api/v1/fuzzy/classify/save-user-data/', json=row.to_dict())
             self.update_state(state='PROGRESS', meta={'done': index, 'total': len(df), 'aes_time':aes_time})
-        return {"message": "Saved data contained in {}".format(str(filename)),'aes_time': aes_time}
+
+        return {"message": "Saved data contained in {}".format(str(filename)),'aes_time': aes_time,"ecc_time":ecc_time,
+                "original_df_size":original_df_size,"encrypted_df_size":encrypted_df_size}
+
     except Exception as ex:
         self.update_state(
             state=states.FAILURE,
