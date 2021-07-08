@@ -56,7 +56,7 @@ def save_in_db(self, df, sensitivity,filename):
                     now = time.time()
                     df[column] = df[column].apply(lambda x: aes.encrypt(x))
                     aes_time = time.time() - now
-                elif sens >= 66:
+                elif sens > 66:
                     now = time.time()
                     df[column] = df[column].apply(lambda x: ecc.encrypt_ECC(x.encode('utf-8').strip(),self,column))
                     # df[column] = df[column].apply(lambda x: aes.encrypt(x))
@@ -64,12 +64,15 @@ def save_in_db(self, df, sensitivity,filename):
 
         encrypted_df_size = sys.getsizeof(df)
 
+        now = time.time()
         for index, row in df.iterrows():
             r = requests.post('http://backend:8000/api/v1/fuzzy/classify/save-user-data/', json=row.to_dict())
-            self.update_state(state='PROGRESS', meta={'done': index, 'total': len(df), 'aes_time':aes_time})
+            self.update_state(state='PROGRESS', meta={'done': index, 'total': len(df)})
+
+        db_save_time = time.time() - now
 
         return {"message": "Saved data contained in {}".format(str(filename)),'aes_time': aes_time,"ecc_time":ecc_time,
-                "original_df_size":original_df_size,"encrypted_df_size":encrypted_df_size}
+                "db_save_time":db_save_time,"original_df_size":original_df_size,"encrypted_df_size":encrypted_df_size}
 
     except Exception as ex:
         self.update_state(

@@ -70,6 +70,7 @@ class FuzzyRule():
 		for ante_clause in self._antecedent:
 			rule_strength = min(ante_clause.evaluate_antecedent(), rule_strength)
 
+		print(f"Rule strength {rule_strength}")
 		# execute consequent clauses, each output variable will update its output_distribution set
 		for consequent_clause in self._consequent:
 			consequent_clause.evaluate_consequent(rule_strength)

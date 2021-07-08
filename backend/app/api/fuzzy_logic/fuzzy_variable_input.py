@@ -19,6 +19,7 @@ class FuzzyInputVariable(FuzzyVariable):
 		for set_name, f_set in self._sets.items():
 			f_set.last_dom_value = f_set[value]
 
+
 	def fuzzify_info(self, value):
 		'''
 		performs fuzzification of the variable. used when the

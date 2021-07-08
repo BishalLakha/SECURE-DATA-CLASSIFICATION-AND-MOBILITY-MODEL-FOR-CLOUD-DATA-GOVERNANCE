@@ -21,6 +21,7 @@ async def predict_single(features: FeatureIn):
         name = features["Name"]
         features.pop("Name")
         output = system.evaluate_output(features)
+
         features.update({"Sensitivity":output["Sensitivity"],"Name":name})
 
         await add_feature(features)

@@ -74,6 +74,8 @@ class FuzzyClause:
                 that variable. This value is determined at an earlier stage
                 and stored in the set
         '''
+
+        print(self._set.last_dom_value)
         return self._set.last_dom_value
 
     def evaluate_consequent(self, dom):

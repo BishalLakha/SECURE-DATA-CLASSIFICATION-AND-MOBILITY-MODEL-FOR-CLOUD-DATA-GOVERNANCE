@@ -140,6 +140,7 @@ class FuzzySystem:
         # add the new rule
         self._rules.append(new_rule)
 
+
     def evaluate_output(self, input_values):
         '''
         Executes the fuzzy inference system for a set of inputs
@@ -224,9 +225,9 @@ class FuzzySystem:
         if total_var_count < 2:
             total_var_count = 2
 
-        fig, axs = plt.subplots(total_var_count, 1)
+        fig, axs = plt.subplots(total_var_count, 1,figsize=(15,15))
 
-        fig.tight_layout(pad=1.0)
+        fig.tight_layout(pad=3.0)
 
         for idx, var_name in enumerate(self._input_variables):
             self._input_variables[var_name].plot_variable(ax=axs[idx], show=False)
