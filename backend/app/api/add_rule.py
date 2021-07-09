@@ -1,7 +1,7 @@
-from fuzzy_logic.fuzzy_variable_output import FuzzyOutputVariable
-from fuzzy_logic.fuzzy_variable_input import FuzzyInputVariable
+from .fuzzy_logic.fuzzy_variable_output import FuzzyOutputVariable
+from .fuzzy_logic.fuzzy_variable_input import FuzzyInputVariable
 # from fuzzy_logic.fuzzy_variable import FuzzyVariable
-from fuzzy_logic.inference_engine import FuzzySystem
+from .fuzzy_logic.inference_engine import FuzzySystem
 
 import warnings
 warnings.filterwarnings("ignore")
