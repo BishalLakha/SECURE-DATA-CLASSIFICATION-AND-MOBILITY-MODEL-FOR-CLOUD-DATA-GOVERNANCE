@@ -134,7 +134,7 @@ class FuzzySet:
 
 
 if __name__ == "__main__":
-    s = FuzzySet.create_trapezoidal('Integrity', 0, 100, 100, 25, 35, 55,65)
+    s = FuzzySet.create_trapezoidal('Medium', 0, 100, 100, 25, 35, 55,65)
     print(s.last_dom_value)
 
     # print(s.empty)
