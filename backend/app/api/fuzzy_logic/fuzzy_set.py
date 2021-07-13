@@ -135,7 +135,10 @@ class FuzzySet:
 
 if __name__ == "__main__":
     s = FuzzySet.create_trapezoidal('Medium', 0, 100, 100, 25, 35, 55,65)
+    s2 = FuzzySet.create_trapezoidal('Medium', 0, 100, 100, 20, 50, 55,85)
+
     print(s.last_dom_value)
+    res = s.union(s2)
 
     # print(s.empty)
     #
@@ -148,7 +151,7 @@ if __name__ == "__main__":
     #
     fig, axs = plt.subplots(1, 1)
     #
-    s.plot_set(axs)
+    res.plot_set(axs)
     # s.union(t).complement().intersection(s).min_scalar(0.2).plot_set(axs)
 
     plt.show()

@@ -32,6 +32,8 @@ class FuzzySystem:
         self._input_variables = {}
         self._output_variables = {}
         self._rules = []
+        self._antecedent_dict_list = []
+        self._consequent_dict_list = []
 
     def __str__(self):
         '''
@@ -122,6 +124,10 @@ class FuzzySystem:
         '''
         # create a new rule
         # new_rule = FuzzyRule(antecedent_clauses, consequent_clauses)
+
+        self._antecedent_dict_list.append(antecedent_clauses)
+        self._consequent_dict_list.append(consequent_clauses)
+
         new_rule = FuzzyRule()
 
         for var_name, set_name in antecedent_clauses.items():
@@ -230,11 +236,31 @@ class FuzzySystem:
         fig.tight_layout(pad=3.0)
 
         for idx, var_name in enumerate(self._input_variables):
+            print(var_name)
             self._input_variables[var_name].plot_variable(ax=axs[idx], show=False)
 
         for idx, var_name in enumerate(self._output_variables):
             self._output_variables[var_name].plot_variable(ax=axs[len(self._input_variables) + idx], show=False)
 
+        plt.show()
+
+    def plot_rule(self,rule_number):
+
+        total_var_count = len(self._input_variables) + len(self._output_variables)
+        if total_var_count < 2:
+            total_var_count = 2
+
+        fig, axs = plt.subplots(total_var_count, 1,figsize=(15,15))
+
+        fig.tight_layout(pad=6.0)
+
+        for idx, var_name in enumerate(self._input_variables):
+            self._input_variables[var_name].plot_variable_for_rule(self._antecedent_dict_list[rule_number],ax=axs[idx], show=False)
+
+        for idx, var_name in enumerate(self._output_variables):
+            self._output_variables[var_name].plot_variable_for_rule(self._consequent_dict_list[rule_number],ax=axs[len(self._input_variables) + idx], show=False)
+
+        fig.suptitle(self._rules[rule_number], fontsize=15)
         plt.show()
 
 

@@ -72,21 +72,57 @@ class FuzzyVariable:
 		----------
 			https://stackoverflow.com/questions/4700614/how-to-put-the-legend-out-of-the-plot
 		'''
+
+
 		if ax == None:
 			ax = plt.subplot(111)
 
 		for n ,s in self._sets.items():
 			ax.plot(s.domain_elements(), s.dom_elements(), label=n)
 
+
 		# Shrink current axis by 20%
 		pos = ax.get_position()
 		ax.set_position([pos.x0, pos.y0, pos.width * 0.8, pos.height])
 		ax.grid(True, which='both', alpha=0.4)
 		ax.set_title(self._name)
-		ax.set(xlabel='x', ylabel='$\mu (x)$')
+
+
+		ax.set(xlabel='x', ylabel=f'$\mu ({self._name[0]})$')
 
 		# Put a legend to the right of the current axis
 		ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 
 		if show:
 			plt.show()
+
+	def plot_variable_for_rule(self, rule,ax=None, show=True):
+		'''
+		plots a graphical representation of the fuzzy variable
+
+		Reference:
+		----------
+			https://stackoverflow.com/questions/4700614/how-to-put-the-legend-out-of-the-plot
+		'''
+		if ax == None:
+			ax = plt.subplot(111)
+
+		for n ,s in self._sets.items():
+			if n == rule[self._name]:
+				ax.plot(s.domain_elements(), s.dom_elements(), label=n)
+
+		# Shrink current axis by 20%
+		pos = ax.get_position()
+		ax.set_position([pos.x0, pos.y0, pos.width * 0.8, pos.height])
+		ax.grid(True, which='both', alpha=0.4)
+		ax.set_title(self._name)
+
+
+		ax.set(xlabel='x', ylabel=f'$\mu ({self._name[0]})$')
+
+		# Put a legend to the right of the current axis
+		ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+
+		if show:
+			plt.show()
+

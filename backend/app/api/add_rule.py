@@ -1,7 +1,7 @@
-from .fuzzy_logic.fuzzy_variable_output import FuzzyOutputVariable
-from .fuzzy_logic.fuzzy_variable_input import FuzzyInputVariable
+from fuzzy_logic.fuzzy_variable_output import FuzzyOutputVariable
+from fuzzy_logic.fuzzy_variable_input import FuzzyInputVariable
 # from fuzzy_logic.fuzzy_variable import FuzzyVariable
-from .fuzzy_logic.inference_engine import FuzzySystem
+from fuzzy_logic.inference_engine import FuzzySystem
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -299,12 +299,13 @@ system.add_rule(
 #
 
 if __name__ == "__main__":
-	features = {'Confidentiality':95,
-			'Integrity':95,
-			'Availability':95}
-
-	output = system.evaluate_output(features)
-	print(output)
-	# system.plot_system()
+	# features = {'Confidentiality':95,
+	# 		'Integrity':95,
+	# 		'Availability':95}
+	#
+	# output = system.evaluate_output(features)
+	# print(output)
+	rule_num = 20
+	system.plot_rule(rule_num)
 
 
