@@ -1,7 +1,7 @@
-from fuzzy_logic.fuzzy_variable_output import FuzzyOutputVariable
-from fuzzy_logic.fuzzy_variable_input import FuzzyInputVariable
+from .fuzzy_logic.fuzzy_variable_output import FuzzyOutputVariable
+from .fuzzy_logic.fuzzy_variable_input import FuzzyInputVariable
 # from fuzzy_logic.fuzzy_variable import FuzzyVariable
-from fuzzy_logic.inference_engine import FuzzySystem
+from .fuzzy_logic.inference_engine import FuzzySystem
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -305,7 +305,8 @@ if __name__ == "__main__":
 	#
 	# output = system.evaluate_output(features)
 	# print(output)
-	rule_num = 20
+	rule_num = 0
 	system.plot_rule(rule_num)
+	# system.plot_system()
 
 
