@@ -34,6 +34,42 @@ async def predict_single(features: FeatureIn):
                 "success": False}
 
 
+@fuzzy.post('/save-by-csv/', status_code=201)
+async def predict_all(csv_file: UploadFile = File(...)):
+    """
+    Save sensitivity of data from csv
+    :param csv_file:
+    :return:
+    """
+    try:
+        if csv_file.filename.split(".")[-1] != "csv":
+            return {"message": "Please use csv file", "success": False, "status": 400}
+
+        dataframe = pd.read_csv(StringIO(str(csv_file.file.read(), 'utf-8')), encoding='utf-8')
+        dataframe = dataframe.astype(str)
+
+
+        for index, row in dataframe.iterrows():
+            features = row.to_dict()
+            name = features["Name"]
+            features.pop("Name")
+
+            features.update((k, float(v)) for k, v in features.items())
+
+            output = system.evaluate_output(features)
+
+            features.update({"Sensitivity":output["Sensitivity"],"Name":name})
+
+            await add_feature(features)
+
+        return {"message": "Successfully updated",
+                "success": True}
+
+    except Exception as E:
+        return {"prediction": None, "message": str(E),
+                "success": False}
+
+
 @fuzzy.post('/save-user-data/', status_code=201)
 async def save_data(data: UserDataIn):
     try:
